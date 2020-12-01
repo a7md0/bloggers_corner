@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
@@ -6,5 +7,11 @@
     </head>
     <body>
         The page is rendering
+
+        {% for item in gallery_objects %}
+            <h4>{{ item.title }}</h4>
+            <p>{{ item.description }}</p>
+            <img src="{% static item.image %}" alt="{{ item.title }}" />
+        {% endfor %}
     </body>
 </html>
