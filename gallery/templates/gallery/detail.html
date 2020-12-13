@@ -1,0 +1,11 @@
+{% load static %}
+<h1>{{ gallery_item.title }}</h1>
+<div class="row">
+    <div class="col-md-8">
+        <img src="{% static gallery_item.image %}" alt="{{ gallery_item.title }}" width="100%">
+    </div>
+    <div class="col-md-4">
+        <h5>About the image</h5>
+        <p>{{ gallery_item.description }}</p>
+    </div>
+</div>
