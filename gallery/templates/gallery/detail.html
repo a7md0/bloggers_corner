@@ -1,4 +1,7 @@
+{% extends 'gallery/base.html' %}
 {% load static %}
+
+{% block content %}
 <h1>{{ gallery_item.title }}</h1>
 <div class="row">
     <div class="col-md-8">
@@ -9,3 +12,4 @@
         <p>{{ gallery_item.description }}</p>
     </div>
 </div>
+{% endblock %}
