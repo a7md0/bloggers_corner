@@ -1,9 +1,18 @@
+from django.http.request import HttpRequest
 from django.shortcuts import render
 from django.http import HttpResponse
 from contactus.forms import ContactusForm
 
 # Create your views here.
-def contactus(request):
+def contactus(request: HttpRequest):
     myForm = ContactusForm()
+
+    if request.method == 'POST':
+        myForm = ContactusForm(request.POST)
+        if myForm.is_valid():
+            name = myForm.cleaned_data['name']
+            notify = "Hi {}, we received your message".format(name)
+
+            return HttpResponse(notify)
 
     return render(request, 'contactus/contactus.html', { 'myForm': myForm })
