@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'gallery',
     'blog',
+    'contactus',
 ]
 
 MIDDLEWARE = [
@@ -60,6 +61,7 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR,'gallery/templates'),
             os.path.join(BASE_DIR,'blog/templates'),
+            os.path.join(BASE_DIR,'contactus/templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
