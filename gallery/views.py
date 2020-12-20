@@ -1,5 +1,8 @@
+from django.http.request import HttpRequest
 from django.shortcuts import render
-from gallery.models import Gallery
+from gallery.models import Gallery, Comment
+from gallery.forms import CommentForm
+from django.http import HttpResponse
 
 # Create your views here.
 def gallery_list(request):
@@ -7,7 +10,19 @@ def gallery_list(request):
 
     return render(request, 'gallery/gallery.html', { 'gallery_objects': gallery_objects })
 
-def gallery_detail(request, id):
+def gallery_detail(request: HttpRequest, id):
     gallery_item = Gallery.objects.get(id = id)
+    form = CommentForm()
 
-    return render(request, 'gallery/detail.html', { 'gallery_item': gallery_item })
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            author = form.cleaned_data['author']
+            body = form.cleaned_data['body']
+
+            comment = Comment(author = author, body = body, item = gallery_item)
+            comment.save()
+    
+    comments = Comment.objects.filter(item=id)
+
+    return render(request, 'gallery/detail.html', { 'gallery_item': gallery_item, 'comments': comments, 'form': form })
