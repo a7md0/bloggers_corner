@@ -3,6 +3,7 @@ from django.shortcuts import render
 from gallery.models import Gallery, Comment
 from gallery.forms import CommentForm
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def gallery_list(request):
@@ -10,6 +11,7 @@ def gallery_list(request):
 
     return render(request, 'gallery/gallery.html', { 'gallery_objects': gallery_objects })
 
+@login_required
 def gallery_detail(request: HttpRequest, id):
     gallery_item = Gallery.objects.get(id = id)
     form = CommentForm()
