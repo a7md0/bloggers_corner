@@ -30,6 +30,8 @@
 </nav>
 
 <div class="container">
+  <h3>Hello, {{user.username|default:'Guest'}} <h3/> 
+    
   {% block content %}{% endblock %}  
 </div>
 
