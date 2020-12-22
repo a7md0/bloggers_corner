@@ -19,7 +19,8 @@ def gallery_detail(request: HttpRequest, id):
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
-            author = form.cleaned_data['author']
+            # author = form.cleaned_data['author']
+            author = request.user.username
             body = form.cleaned_data['body']
 
             comment = Comment(author = author, body = body, item = gallery_item)

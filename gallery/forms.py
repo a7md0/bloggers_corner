@@ -3,15 +3,15 @@ from django.forms.fields import CharField
 
 
 class CommentForm(forms.Form):
-    author = CharField(
-        max_length=60,
-        widget=forms.TextInput(
-            attrs={
-                "class": "form-control",
-                "placeholder": "Your Name"
-            }
-        )
-    )
+    # author = CharField(
+    #     max_length=60,
+    #     widget=forms.TextInput(
+    #         attrs={
+    #             "class": "form-control",
+    #             "placeholder": "Your Name"
+    #         }
+    #     )
+    # )
     body = CharField(
         widget=forms.Textarea(
             attrs={
